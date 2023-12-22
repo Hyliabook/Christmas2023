@@ -5,9 +5,15 @@ class GameController extends GameObject
     
     sound;
 
+    screenWidth;
+    screenHeight;
+
     constructor()
     {
         super(null, "MainController", null);
+
+        this.screenWidth = window.innerWidth;
+        this.screenHeight = window.innerHeight;
 
         this.screen = "Terms";
         console.log(this.screen);

@@ -11,7 +11,8 @@ class Terms extends GameObject
         super(null, "terms", control);
         this.controller = control;
        // this.background = new GameObject("rect", "recttt", 0,0,100,100, null, this.controller);
-       this.background = new GameObject("image", "back", 0,0,this.svgObject.getAttributeNS(null, "height"),this.svgObject.getAttributeNS(null, "width"),"././Images/Backgrounds/terms.png", this.controller);
+       console.log(this.controller.screenHeight);
+       this.background = new GameObject("image", "back", 0,0, this.controller.screenHeight, this.controller.screenWidth,"././Images/Backgrounds/terms.png", this.controller);
        //this.background.SetPosition(0,0);
 
        //this.background.element.onclick = ((e) => console.log(this.controller.ClearScreen()));
