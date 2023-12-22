@@ -18,8 +18,13 @@ class Terms extends GameObject
        //this.background.element.onclick = ((e) => console.log(this.controller.ClearScreen()));
        //console.log(this.background);
 
-       this.buttonNo = new GameObject("image", "noButton", 1080/1.5, 1920/2.5, 292/1.5,693/1.5, "././Images/UI/Terms/noAgree.png", this.controller);
-       this.buttonYes = new GameObject("image", "yesButton", 1080/1.5, 1920/3.5, 292/1.5,693/1.5, "././Images/UI/Terms/agree.png", this.controller);
+       let buttonX = this.background.width / 2.5;
+       let buttonY = this.background.height / 15;
+       let buttonWidth = this.background.width / 1.3;
+       let buttonHeight = this.background.height / 2;
+
+       this.buttonNo = new GameObject("image", "noButton", buttonX, buttonY, buttonWidth, buttonHeight, "././Images/UI/Terms/noAgree.png", this.controller);
+       this.buttonYes = new GameObject("image", "yesButton", buttonX, buttonY - 200, buttonWidth, buttonHeight, "././Images/UI/Terms/agree.png", this.controller);
 
        this.buttonNo.element.onclick = this.ClickNo.bind(this.controller);
        this.buttonYes.element.onclick = this.ClickYes.bind(this.controller);

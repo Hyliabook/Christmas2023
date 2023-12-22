@@ -27,16 +27,16 @@ class TitleController extends GameObject
 
         this.introState = 0;
 
-        this.black = new GameObject("image", "black",0,0,1080,1920,"././Images/VFX/black.png", this.controller);
-        this.bushimo = new GameObject("image", "bushimo",0,0,1080,1920,"././Images/Backgrounds/Title/bushimo.png", this.controller); 
+        this.black = new GameObject("image", "black",0,0,this.controller.screenHeight,this.controller.screenWidth,"././Images/VFX/black.png", this.controller);
+        this.bushimo = new GameObject("image", "bushimo",0,0,this.controller.screenHeight,this.controller.screenWidth,"././Images/Backgrounds/Title/bushimo.png", this.controller); 
         this.bushimo.SetOpacity(0);
-        this.klab = new GameObject("image", "klab",0,0,1080,1920,"././Images/Backgrounds/Title/klab.png", this.controller);
+        this.klab = new GameObject("image", "klab",0,0,this.controller.screenHeight,this.controller.screenWidth,"././Images/Backgrounds/Title/klab.png", this.controller);
         this.klab.SetOpacity(0);
-        this.parent = new GameObject("image", "parent", 0,0, 1080,1920, "././Images/Backgrounds/Title/baby.png", this.controller);
+        this.parent = new GameObject("image", "parent", 0,0, this.controller.screenHeight,this.controller.screenWidth, "././Images/Backgrounds/Title/baby.png", this.controller);
         this.parent.SetOpacity(0);
-        this.title =  new GameObject("image", "title", 0,0, 1080,1920, "././Images/Backgrounds/Title/title.png", this.controller);
+        this.title =  new GameObject("image", "title", 0,0, this.controller.screenHeight,this.controller.screenWidth, "././Images/Backgrounds/Title/title.png", this.controller);
         this.title.SetOpacity(0);
-        this.white = new GameObject("image", "white", 0,0, 1080,1920, "././Images/VFX/white.png", this.controller);
+        this.white = new GameObject("image", "white", 0,0, this.controller.screenHeight,this.controller.screenWidth, "././Images/VFX/white.png", this.controller);
         this.white.SetOpacity(0);
         this.bushiMoTimer = 0;
         this.kLabTimer = 0;
