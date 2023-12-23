@@ -79,7 +79,7 @@ class TitleController extends GameObject
             case(4): this.Tap(); break;
         }
 
-        if(this.controller.sound[0].isPlaying() && this.introState == 3)
+        if(!this.controller.sound[0].paused && this.introState == 3)
             this.Tap();
         
     }
