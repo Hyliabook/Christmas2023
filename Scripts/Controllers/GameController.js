@@ -63,4 +63,20 @@ class GameController extends GameObject
     {
         this.svgObject.remove(rObject.element);
     }
+
+    PlaceObjectRelativeToScreen(ob, sizePer, yPer, xPer)
+    {
+        let screenAspect = this.screenWidth / this.screenHeight;
+        let obAspect = ob.width/ob.height; 
+
+        let newX = this.screenWidth * xPer;
+        let newY = this.screenHeight * yPer;
+
+        let newWidth = this.screenWidth * sizePer;
+        let newHeight = newWidth / obAspect;
+
+        ob.SetTransforms(newX, newY, newHeight, newWidth);
+        ob.CenterObject();
+
+    }
 }

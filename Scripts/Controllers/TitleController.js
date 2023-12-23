@@ -14,11 +14,14 @@ class TitleController extends GameObject
     klab;
     parent;
     title;
+    tap;
     white;
 
     girls;
 
     fadeRate;
+
+    changeTap;
 
     constructor(control)
     {
@@ -36,6 +39,12 @@ class TitleController extends GameObject
         this.parent.SetOpacity(0);
         this.title =  new GameObject("image", "title", 0,0, this.controller.screenHeight,this.controller.screenWidth, "././Images/Backgrounds/Title/title.png", this.controller);
         this.title.SetOpacity(0);
+
+        this.tap = new GameObject("image", "tap", 0,0,66,370,"././Images/UI/Title/tapScreen.png", this.controller);
+        this.controller.PlaceObjectRelativeToScreen(this.tap, .4, .72, .3);
+        this.tap.SetOpacity(0);
+
+
         this.white = new GameObject("image", "white", 0,0, this.controller.screenHeight,this.controller.screenWidth, "././Images/VFX/white.png", this.controller);
         this.white.SetOpacity(0);
         this.bushiMoTimer = 0;
@@ -46,8 +55,16 @@ class TitleController extends GameObject
         this.fadeRate = 0.0020;
 
         this.girls = ["Honoka","Kotori","Umi","Hanayo","Maki","Rin","Nico","Eli","Nozomi","Chika","Riko","You","Hanamaru","Ruby","Yohane","Kanan","Mari","Dia"];
+        
+        let girl = Math.floor(Math.random() * (this.girls.length));
+        this.controller.sound[0].src = "././Audio/Voice/Bushimo/bushimo" + this.girls[girl] + ".wav";
+        this.controller.sound[0].preload = "auto";
+        console.log(girl);
+        console.log(this.girls[girl]);
 
+        changeTap = true;
     }
+
 
     Update()
     {
@@ -59,7 +76,11 @@ class TitleController extends GameObject
             case(1): this.Klab(); break;
             case(2): this.Parent(); break;
             case(3): this.Title(); break;
+            case(4): this.Tap(); break;
         }
+
+        if(this.controller.sound[0].isPlaying() && this.introState == 3)
+            this.Tap();
         
     }
 
@@ -102,11 +123,7 @@ class TitleController extends GameObject
 
     BushimoPlay()
     {
-        let girl = Math.floor(Math.random() * (this.girls.length));
-        this.controller.sound[0].src = "././Audio/Voice/Bushimo/bushimo" + this.girls[girl] + ".wav";
-        this.controller.sound[0].play();
-        console.log(girl);
-        console.log(this.girls[girl]);
+        this.controller.sound[0].play(); 
     }
 
     Bushimo()
@@ -185,12 +202,25 @@ class TitleController extends GameObject
             this.controller.sound[0].src = "././Audio/Music/takaramanos.mp3";
             this.controller.sound[0].loop = true;
             this.controller.sound[0].play();
+            this.introState = 4;
+            this.fadeRate = 0.0010;
         }
         }
 
         
         if(this.titleTimer < 30000)
         this.titleTimer += this.deltaTime;
+    }
+
+    Tap()
+    {
+        if(this.tap.GetOpacity() == 1 || this.tap.GetOpacity() == 0)
+            this.changeTap= !this.changeTap;
+
+        if(this.changeTap)
+            this.FadeIn(this.tap, false);
+        else
+            this.FadeOut(this.tap);
     }
 
 }
