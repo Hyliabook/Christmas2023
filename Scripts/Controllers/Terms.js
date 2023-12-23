@@ -28,6 +28,9 @@ class Terms extends GameObject
 
        this.buttonNo.element.onclick = this.ClickNo.bind(this.controller);
        this.buttonYes.element.onclick = this.ClickYes.bind(this.controller);
+
+       this.controller.relScreenHeight = this.background.height;
+       this.controller.relScreenWidth = this.background.width;
     }
 
     ClickYes(e)
