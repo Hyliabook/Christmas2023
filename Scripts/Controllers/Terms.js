@@ -31,6 +31,8 @@ class Terms extends GameObject
 
        this.controller.relScreenHeight = this.background.height;
        this.controller.relScreenWidth = this.background.width;
+
+       console.log(this.controller.relScreenHeight + " REL SCREEN HEIGHT")
     }
 
     ClickYes(e)

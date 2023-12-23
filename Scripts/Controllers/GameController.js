@@ -8,9 +8,6 @@ class GameController extends GameObject
     screenWidth;
     screenHeight;
 
-    relScreenWidth;
-    relScreenHeight;
-
     constructor()
     {
         super(null, "MainController", null);
@@ -26,10 +23,6 @@ class GameController extends GameObject
 
             for(let x=0; x<4; x++)
             this.sound[x] = document.querySelector("#sfx" + x);
-
-        
-        this.relScreenWidth = 0;
-        this.relScreenHeight = 0;
         
 
     }
@@ -73,14 +66,17 @@ class GameController extends GameObject
 
     PlaceObjectRelativeToScreen(ob, sizePer, yPer, xPer)
     {
-        let screenAspect = this.relScreenWidth / this.relScreenWidth;
+        let screenAspect = this.screenWidth / this.screenHeight;
         let obAspect = ob.width/ob.height; 
 
-        let newX = this.relScreenHeight * xPer;
-        let newY = this.relScreenWidth * yPer;
+        let newX = this.screenWidth * xPer;
+        let newY = this.screenHeight * yPer;
 
-        let newWidth = this.relScreenWidth * sizePer;
-        let newHeight = newWidth / obAspect;
+        //let newWidth = this.screenWidth * sizePer;
+        //let newHeight = newWidth / obAspect;
+
+        let newHeight = this.screenHeight * sizePer;
+        let newWidth = newHeight * obAspect;
 
         ob.SetTransforms(newX, newY, newHeight, newWidth);
         ob.MoveToCenter();
