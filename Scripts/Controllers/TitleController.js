@@ -41,7 +41,7 @@ class TitleController extends GameObject
         this.title.SetOpacity(0);
 
         this.tap = new GameObject("image", "tap", 0,0,66,370,"././Images/UI/Title/tapScreen.png", this.controller);
-        this.controller.PlaceObjectRelativeToScreen(this.tap, .3, .72, .3);
+        this.controller.PlaceObjectRelativeToScreen(this.tap, .4, .75, .5);
         this.tap.SetOpacity(0);
 
 

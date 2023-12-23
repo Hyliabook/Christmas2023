@@ -76,7 +76,8 @@ class GameController extends GameObject
         let newHeight = newWidth / obAspect;
 
         ob.SetTransforms(newX, newY, newHeight, newWidth);
-        ob.CenterObject();
+        ob.MoveToCenter();
+        //ob.CenterObject();
 
     }
 }
