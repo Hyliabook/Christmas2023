@@ -8,6 +8,7 @@ class TitleController extends GameObject
     kLabTimer;
     titleTimer;
     parentTimer;
+    transitionTimer;
 
     black;
     bushimo;
@@ -16,6 +17,7 @@ class TitleController extends GameObject
     title;
     tap;
     white;
+    darken;
 
     girls;
 
@@ -44,6 +46,8 @@ class TitleController extends GameObject
         this.controller.PlaceObjectRelativeToScreen(this.tap, .125, .775, .5);
         this.tap.SetOpacity(0);
 
+        this.darken = new GameObject("image", "darken", 0,0, this.controller.screenHeight, this.controller.screenWidth, "././Images/VFX/darken.png", this.controller)
+        this.darken.SetOpacity(0);
 
         this.white = new GameObject("image", "white", 0,0, this.controller.screenHeight,this.controller.screenWidth, "././Images/VFX/white.png", this.controller);
         this.white.SetOpacity(0);
@@ -51,6 +55,7 @@ class TitleController extends GameObject
         this.kLabTimer = 0;
         this.titleTimer = 0;
         this.parentTimer = 0;
+        this.transitionTimer = 0;
 
         this.fadeRate = 0.0020;
 
@@ -77,6 +82,7 @@ class TitleController extends GameObject
             case(2): this.Parent(); break;
             case(3): this.Title(); break;
             case(4): this.Tap(); break;
+            case(5): this.Transtion(); break;
         }
 
         if(!this.controller.sound[0].paused && this.introState == 3)
@@ -155,7 +161,6 @@ class TitleController extends GameObject
 
     if(this.bushiMoTimer > 7000  && this.bushiMoTimer < 8000)
     {
-        console.log(this.white.GetOpacity());
         this.FadeIn(this.white);
     }
 
@@ -204,6 +209,10 @@ class TitleController extends GameObject
             this.controller.sound[0].play();
             this.introState = 4;
             this.fadeRate = 0.0010;
+
+            this.white.element.onclick = this.Start.bind(this);
+            this.controller.sound[1].src = "././Audio/UISFX/select.mp3";
+            this.controller.sound[1].preload = "auto";
         }
         }
 
@@ -221,6 +230,22 @@ class TitleController extends GameObject
             this.FadeIn(this.tap, false);
         else
             this.FadeOut(this.tap);
+    }
+
+    Start()
+    {
+        this.white.element.onclick = null;
+        this.controller.sound[1].play();
+        this.introState = 5;
+        this.tap.SetOpacity(0);
+        this.darken.SetOpacity(1);
+    }
+
+    Transtion()
+    {
+
+        if(this.controller.sound[1].paused)
+        this.transitionTimer += this.deltaTime;
     }
 
 }
